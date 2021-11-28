@@ -13,7 +13,6 @@ namespace _57Blocks.Music.DataModels.Contracts
         public int Id { get; set; }
 
         [JsonProperty(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
-        [JsonProperty]
         public string Name { get; set; }
     }
 }

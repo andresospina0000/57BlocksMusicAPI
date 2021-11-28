@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Mapster;
+using _57Blocks.Music.DataModels;
 
 namespace _57BlocksMusicAPI.Controllers
 {
@@ -13,12 +15,13 @@ namespace _57BlocksMusicAPI.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly ILogger<UserController> _logger;
+        private readonly ILogger<UserController> logger;
         private readonly IUserAplicationService userService;
 
-        public UserController(ILogger<UserController> logger)
+        public UserController(ILogger<UserController> logger, IUserAplicationService userService)
         {
-            _logger = logger;
+            this.logger = logger;
+            this.userService = userService;
         }
 
         [HttpGet]
@@ -40,16 +43,16 @@ namespace _57BlocksMusicAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(UserViewModel user)
         {
-            var userEntity = new UserViewModel().ToEntity(user);
+            var userEntity = user.Adapt<User>();
             var createdUser = await userService.Create(userEntity);
 
             return Ok(createdUser);
         }
 
-        [HttpPost]
+        [HttpPut]
         public async Task<IActionResult> Update(UserViewModel user)
         {
-            var userEntity = new UserViewModel().ToEntity(user);
+            var userEntity = user.Adapt<User>();
             var updatedUser = await userService.Update(userEntity);
 
             return Ok(updatedUser);

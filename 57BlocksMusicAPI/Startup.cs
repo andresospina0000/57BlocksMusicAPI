@@ -37,7 +37,7 @@ namespace _57BlocksMusicAPI
             //Configuring aplication services
             services.AddTransient<IUserAplicationService, UserAplicationService>();
 
-            services.AddDbContext<MusicDbLiteConnection>(
+            services.AddDbContext<MusicDbLiteContext>(
                 options => options.UseSqlite(
                     Configuration.GetConnectionString(
                         ApplicationSettings.AppSettings.GetConnectionString)));

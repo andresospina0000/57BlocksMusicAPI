@@ -1,16 +1,26 @@
 ﻿using _57Blocks.Music.BLogic.Contracts;
 using _57Blocks.Music.DataModels;
+using _57Block.Music.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using _57Block.Music.Infrastructure.Exceptions;
+using System.Net;
 
 namespace _57Blocks.Music.BLogic
 {
     public class UserAplicationService : IUserAplicationService
     {
-        public Task<User> Create(User user)
+        public async Task<User> Create(User user)
         {
-            throw new NotImplementedException();
+            var emailExist = await GetByEmail(user.Email);
+
+            if (emailExist != null)
+            {
+                throw new MusicApiException(HttpStatusCode.Conflict);
+            }
+
+            return null;
         }
 
         public Task<bool> Delete(string id)

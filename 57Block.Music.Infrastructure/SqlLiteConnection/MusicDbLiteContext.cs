@@ -6,11 +6,11 @@ using System.Text;
 
 namespace _57Block.Music.Infrastructure.SqlLiteConnection
 {
-    public class MusicDbLiteConnection : DbContext
+    public class MusicDbLiteContext : DbContext
     {
-        public MusicDbLiteConnection(DbContextOptions<MusicDbLiteConnection> options) : base(options)
+        public MusicDbLiteContext(DbContextOptions<MusicDbLiteContext> options) : base(options)
         {
 
-        }
+        }                
     }
 }
