@@ -1,7 +1,10 @@
 using _57Block.Music.Infrastructure.AppSettings;
+using _57Block.Music.Infrastructure.Repositories;
+using _57Block.Music.Infrastructure.Repositories.Contracts;
 using _57Block.Music.Infrastructure.SqlLiteConnection;
 using _57Blocks.Music.BLogic;
 using _57Blocks.Music.BLogic.Contracts;
+using _57Blocks.Music.DataModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,10 +40,15 @@ namespace _57BlocksMusicAPI
             //Configuring aplication services
             services.AddTransient<IUserAplicationService, UserAplicationService>();
 
+            //Adding database configuration
+            services.AddTransient<MusicDbLiteContext>();
+
+            //Adding Repositories
+            services.AddTransient<IUserRepository<User>, UserRepository>();
+
             services.AddDbContext<MusicDbLiteContext>(
                 options => options.UseSqlite(
-                    Configuration.GetConnectionString(
-                        ApplicationSettings.AppSettings.GetConnectionString)));
+                    Configuration.GetConnectionString(ApplicationSettings.AppSettings.GetConnectionString)));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
             services.AddControllers();
 

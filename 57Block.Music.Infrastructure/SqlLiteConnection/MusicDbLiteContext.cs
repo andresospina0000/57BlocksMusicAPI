@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using _57Blocks.Music.DataModels;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace _57Block.Music.Infrastructure.SqlLiteConnection
         public MusicDbLiteContext(DbContextOptions<MusicDbLiteContext> options) : base(options)
         {
 
-        }                
+        }
+        
+        public DbSet<User> users { get; set; }
     }
 }

@@ -6,21 +6,31 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using _57Block.Music.Infrastructure.Exceptions;
 using System.Net;
+using _57Block.Music.Infrastructure.Repositories.Contracts;
 
 namespace _57Blocks.Music.BLogic
 {
     public class UserAplicationService : IUserAplicationService
     {
+        private readonly IUserRepository<User> userRepository;
+
+        public UserAplicationService(IUserRepository<User> _userRepository)
+        {
+            this.userRepository = _userRepository;
+        }
+
         public async Task<User> Create(User user)
         {
-            var emailExist = await GetByEmail(user.Email);
+            /*var emailExist = await GetByEmail(user.Email);
 
             if (emailExist != null)
             {
                 throw new MusicApiException(HttpStatusCode.Conflict);
-            }
+            }*/
 
-            return null;
+            var createdUser = await userRepository.CreateUser(user);
+
+            return createdUser;
         }
 
         public Task<bool> Delete(string id)

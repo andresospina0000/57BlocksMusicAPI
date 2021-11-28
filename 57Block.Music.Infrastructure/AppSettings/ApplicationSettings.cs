@@ -44,7 +44,8 @@ namespace _57Block.Music.Infrastructure.AppSettings
         }
 
         public string GetConnectionString
-            => Environment.GetEnvironmentVariable("ConnectionString") ??
-            AppConfig["ConnectionString"];
+            => AppConfig["ConnectionStrings:DefaultConnection"];
+
+        public ApplicationSettings() { }
     }
 }
