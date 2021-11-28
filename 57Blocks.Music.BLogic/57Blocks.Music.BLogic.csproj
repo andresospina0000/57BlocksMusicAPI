@@ -5,4 +5,8 @@
     <RootNamespace>_57Blocks.Music.BLogic</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\57Blocks.Music.DataModels\57Blocks.Music.DataModels.csproj" />
+  </ItemGroup>
+
 </Project>
