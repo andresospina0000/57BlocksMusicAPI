@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using _57Blocks.Music.BLogic.AplicationServices;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +14,16 @@ namespace _57BlocksMusicAPI.Controllers
     [ApiController]
     public class SongController : ControllerBase
     {
+        private readonly ILogger<SongController> _logger;
+        private readonly SongAplicationService songService;
+
         // GET: api/<SongsController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> GetSongsByAlbum(string albumId)
         {
-            return new string[] { "value1", "value2" };
+            var songs = songService.GetAlbumSongs(albumId);
+
+            return Ok(songs);
         }
 
         // GET api/<SongsController>/5

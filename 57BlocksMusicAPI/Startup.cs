@@ -1,5 +1,7 @@
 using _57Block.Music.Infrastructure.AppSettings;
 using _57Block.Music.Infrastructure.SqlLiteConnection;
+using _57Blocks.Music.BLogic;
+using _57Blocks.Music.BLogic.Contracts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,6 +33,10 @@ namespace _57BlocksMusicAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //Configuring aplication services
+            services.AddTransient<IUserAplicationService, UserAplicationService>();
+
             services.AddDbContext<MusicDbLiteConnection>(
                 options => options.UseSqlite(
                     Configuration.GetConnectionString(

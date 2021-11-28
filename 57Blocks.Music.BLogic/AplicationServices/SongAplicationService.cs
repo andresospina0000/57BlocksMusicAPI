@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace _57Blocks.Music.BLogic.AplicationServices
 {
-    public class SongAplicationService : IMediaAplicationService<Song>
+    public class SongAplicationService : ISongAplicationService
     {
         public Task<Song> Create(Song mediaEntity)
         {
@@ -15,6 +15,11 @@ namespace _57Blocks.Music.BLogic.AplicationServices
         }
 
         public Task<bool> Delete(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Song>> GetAlbumSongs(string albumId)
         {
             throw new NotImplementedException();
         }

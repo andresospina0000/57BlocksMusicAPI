@@ -1,15 +1,34 @@
+using _57Blocks.Music.DataModels;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace _57BlocksMusicAPI
 {
+    [JsonObject(NamingStrategyType = typeof(CamelCaseNamingStrategy))]
     public class UserViewModel
     {
-        public DateTime Date { get; set; }
+        [JsonProperty(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
+        [EmailAddress(ErrorMessage = "Please enter a valid email address")]
+        public string Email { get; set; }
 
-        public int TemperatureC { get; set; }
+        [JsonProperty(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
+        public string Name { get; set; }
+        
+        [JsonProperty(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
+        public string Password { get; set; }
 
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+        public User ToEntity(UserViewModel user)
+        {
+            var user = new User
+            {
+                Email = this.Email,
+                Name = this.Name,
+                Password = this.Password
+            };
 
-        public string Summary { get; set; }
+            return user;
+        }
     }
 }
