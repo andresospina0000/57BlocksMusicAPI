@@ -1,16 +1,15 @@
-﻿using System;
+﻿using _57Blocks.Music.DataModels.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace _57Blocks.Music.DataModels.Models
 {
-    public class Song
+    public class Song : MediaEntity
     {
         public int ArtistId { get; }
 
         public int AlbumId { get; }
-
-        public string TrackName { get; set; }
 
         public int UserId { get; set; }
 
