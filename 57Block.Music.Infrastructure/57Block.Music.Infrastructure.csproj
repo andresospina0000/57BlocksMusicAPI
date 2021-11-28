@@ -5,4 +5,12 @@
     <RootNamespace>_57Block.Music.Infrastructure</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.21" />
+  </ItemGroup>
+
 </Project>
