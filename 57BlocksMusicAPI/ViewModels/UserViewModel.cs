@@ -2,7 +2,7 @@ using System;
 
 namespace _57BlocksMusicAPI
 {
-    public class WeatherForecast
+    public class UserViewModel
     {
         public DateTime Date { get; set; }
 

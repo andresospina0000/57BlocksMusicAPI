@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>_57BlocksMusicAPI</RootNamespace>
+    <Authors>Andres Ospina</Authors>
+    <Product>57BlocksMusicAPI</Product>
   </PropertyGroup>
 
   <ItemGroup>
