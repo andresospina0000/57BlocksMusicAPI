@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +37,13 @@ namespace _57BlocksMusicAPI
                         ApplicationSettings.AppSettings.GetConnectionString)));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
             services.AddControllers();
+
+            services.AddSwaggerGen(
+                swagger =>
+                {
+                    swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "Music API - Andres Ospina", Version = "v1" });
+                }
+                );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +61,17 @@ namespace _57BlocksMusicAPI
             app.UseAuthorization();
 
             app.UseAuthorization();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Music API - 57Blocks");
+                c.InjectStylesheet("/swagger/custom.css");
+                c.DocumentTitle = "Music API - 57Blocks";
+                c.InjectJavascript("/swagger-ui/custom.js?version=1.0", "text/javascript");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseEndpoints(endpoints =>
             {

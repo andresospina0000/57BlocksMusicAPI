@@ -8,7 +8,7 @@ namespace _57Block.Music.Infrastructure.SqlLiteConnection
 {
     public class MusicDbLiteConnection : DbContext
     {
-        public MusicDbLiteConnection() : base()
+        public MusicDbLiteConnection(DbContextOptions<MusicDbLiteConnection> options) : base(options)
         {
 
         }
