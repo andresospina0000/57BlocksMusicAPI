@@ -9,7 +9,7 @@ namespace _57Blocks.Music.DataModels
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int userId { get; }
+        public int userId { get; set; }
         public string Name { get; set; }
 
         public string Email { get; set; }

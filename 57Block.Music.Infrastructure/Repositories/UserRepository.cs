@@ -1,6 +1,7 @@
 ﻿using _57Block.Music.Infrastructure.Repositories.Contracts;
 using _57Block.Music.Infrastructure.SqlLiteConnection;
 using _57Blocks.Music.DataModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,14 +36,35 @@ namespace _57Block.Music.Infrastructure.Repositories
             return Task.FromResult(user);
         }
 
-        public async Task<User> UpdateUser(User user)
+        public Task<User> UpdateUser(User user)
         {
-            throw new NotImplementedException();
+            /*var currentUser = dbLiteContext.users.Where(
+                x => x.Email.ToLower().Equals(user.Email.ToLower())
+                ).FirstOrDefault();*/
+
+            var currentUser = dbLiteContext.users.Where(
+                x => x.userId.Equals(user.userId)).FirstOrDefault();
+
+            currentUser.Email = user.Email;
+            currentUser.Name = user.Name;
+            currentUser.Password = user.Password;
+            
+            dbLiteContext.SaveChangesAsync();
+
+            return Task.FromResult(user);
         }
 
-        public async Task<User> DeleteUser(string entityId)
+        public Task<bool> DeleteUser(string email)
         {
-            throw new NotImplementedException();
+            bool isDeleted = false;
+
+            var user = dbLiteContext.users.Where(
+                x => x.Email.ToLower().Equals(email.ToLower())).FirstOrDefault();
+
+            dbLiteContext.users.Remove(user);
+            dbLiteContext.SaveChangesAsync();
+
+            return Task.FromResult(!isDeleted);
         }
 
         public async Task<User> GetUserById(string entityId)

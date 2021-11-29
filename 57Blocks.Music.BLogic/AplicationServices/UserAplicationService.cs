@@ -33,9 +33,34 @@ namespace _57Blocks.Music.BLogic
             return createdUser;
         }
 
-        public Task<bool> Delete(string id)
+        public async Task<User> Update(User user)
         {
-            throw new NotImplementedException();
+            var emailExist = await GetByEmail(user.Email);
+
+            if (emailExist == null)
+            {
+                throw new MusicApiException(HttpStatusCode.NotFound);
+            }
+
+            user.userId = emailExist.userId;
+
+            var updateUser = await userRepository.UpdateUser(user);
+
+            return updateUser;
+        }
+
+        public async Task<bool> Delete(string email)
+        {
+            var emailExist = await GetByEmail(email);
+
+            if (emailExist == null)
+            {
+                throw new MusicApiException(HttpStatusCode.NotFound);
+            }
+
+            var deleted = await userRepository.DeleteUser(email);
+
+            return deleted;
         }
 
         public Task<IEnumerable<User>> GetAll()
@@ -51,11 +76,6 @@ namespace _57Blocks.Music.BLogic
         }
 
         public Task<User> GetById(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<User> Update(User user)
         {
             throw new NotImplementedException();
         }

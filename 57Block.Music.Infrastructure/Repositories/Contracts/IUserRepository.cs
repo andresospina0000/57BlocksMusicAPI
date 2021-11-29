@@ -11,7 +11,7 @@ namespace _57Block.Music.Infrastructure.Repositories.Contracts
 
         Task<User> UpdateUser(User user);
 
-        Task<User> DeleteUser(string entityId);
+        Task<bool> DeleteUser(string entityId);
 
         Task<User> GetUserById(string entityId);
 

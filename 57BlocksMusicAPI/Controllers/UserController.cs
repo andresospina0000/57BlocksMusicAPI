@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Mapster;
 using _57Blocks.Music.DataModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace _57BlocksMusicAPI.Controllers
 {
@@ -33,6 +34,7 @@ namespace _57BlocksMusicAPI.Controllers
             return Ok(allUsers);
         }
 
+        [HttpGet("email/{email}")]
         public async Task<IActionResult> GetByEmail(string email)
         {
             var user = await userService.GetByEmail(email);
@@ -43,6 +45,11 @@ namespace _57BlocksMusicAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(UserViewModel user)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(user);
+            }
+
             var userEntity = user.Adapt<User>();
             var createdUser = await userService.Create(userEntity);
 
@@ -58,11 +65,11 @@ namespace _57BlocksMusicAPI.Controllers
             return Ok(updatedUser);
         }
 
-        [Authorize]
-        [HttpDelete]
-        public async Task<IActionResult> Delete(string userId)
+        //[Authorize]
+        [HttpDelete("{email}")]
+        public async Task<IActionResult> Delete(string email)
         {
-            var deletedUser = await userService.Delete(userId);
+            var deletedUser = await userService.Delete(email);
 
             return NoContent();
         }
