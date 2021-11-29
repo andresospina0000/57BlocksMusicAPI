@@ -21,12 +21,12 @@ namespace _57Blocks.Music.BLogic
 
         public async Task<User> Create(User user)
         {
-            /*var emailExist = await GetByEmail(user.Email);
+            var emailExist = await GetByEmail(user.Email);
 
             if (emailExist != null)
             {
                 throw new MusicApiException(HttpStatusCode.Conflict);
-            }*/
+            }
 
             var createdUser = await userRepository.CreateUser(user);
 
@@ -43,9 +43,11 @@ namespace _57Blocks.Music.BLogic
             throw new NotImplementedException();
         }
 
-        public Task<User> GetByEmail(string email)
+        public async Task<User> GetByEmail(string email)
         {
-            throw new NotImplementedException();
+            var user = await userRepository.GetUserByEmail(email);
+
+            return user;
         }
 
         public Task<User> GetById(string id)

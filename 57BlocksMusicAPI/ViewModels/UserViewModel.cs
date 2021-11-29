@@ -15,7 +15,7 @@ namespace _57BlocksMusicAPI
 
         [JsonProperty(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
         public string Name { get; set; }
-        
+
         [StringLength(10, ErrorMessage = "The password must have at least 10 characters")]
         [JsonProperty(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
         public string Password { get; set; }

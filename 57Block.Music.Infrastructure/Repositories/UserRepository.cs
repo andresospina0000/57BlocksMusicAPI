@@ -3,6 +3,7 @@ using _57Block.Music.Infrastructure.SqlLiteConnection;
 using _57Blocks.Music.DataModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,6 +25,14 @@ namespace _57Block.Music.Infrastructure.Repositories
             _ = dbLiteContext.SaveChangesAsync();
 
             return await Task.FromResult(user);
+        }
+
+        public Task<User> GetUserByEmail(string email)
+        {
+            var user = dbLiteContext.users.Where(
+                x => x.Email.ToLower().Equals(email.ToLower())).FirstOrDefault();
+
+            return Task.FromResult(user);
         }
 
         public async Task<User> UpdateUser(User user)

@@ -36,19 +36,17 @@ namespace _57BlocksMusicAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             //Configuring aplication services
             services.AddTransient<IUserAplicationService, UserAplicationService>();
-
-            //Adding database configuration
-            services.AddTransient<MusicDbLiteContext>();
-
+                       
             //Adding Repositories
             services.AddTransient<IUserRepository<User>, UserRepository>();
 
+            //Adding Db Context
+            var connectionString = ApplicationSettings.AppSettings.GetConnectionString;
             services.AddDbContext<MusicDbLiteContext>(
-                options => options.UseSqlite(
-                    Configuration.GetConnectionString(ApplicationSettings.AppSettings.GetConnectionString)));
+                options => options.UseSqlite(connectionString));
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
             services.AddControllers();
 

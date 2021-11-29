@@ -14,5 +14,7 @@ namespace _57Block.Music.Infrastructure.Repositories.Contracts
         Task<User> DeleteUser(string entityId);
 
         Task<User> GetUserById(string entityId);
+
+        Task<User> GetUserByEmail(string email);
     }
 }
