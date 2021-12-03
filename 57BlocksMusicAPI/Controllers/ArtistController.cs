@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using _57Blocks.Music.BLogic.Contracts;
+using _57Blocks.Music.DataModels.Models;
+using Mapster;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +16,15 @@ namespace _57BlocksMusicAPI.Controllers
     [ApiController]
     public class ArtistController : ControllerBase
     {
+        private readonly ILogger<ArtistController> logger;
+        private readonly IArtistAplicationService service;
+
+        public ArtistController(ILogger<ArtistController> _logger, IArtistAplicationService _artistAplicationService)
+        {
+            this.logger = _logger;
+            this.service = _artistAplicationService;
+        }
+
         // GET: api/<ArtistController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -28,8 +41,13 @@ namespace _57BlocksMusicAPI.Controllers
 
         // POST api/<ArtistController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] ArtistViewModel artist)
         {
+            var artistEntity = artist.Adapt<Artist>();
+            var createdArtist = await service.Create(artistEntity);
+            var result = createdArtist.Adapt<ArtistViewModel>();
+
+            return Ok(result);
         }
 
         // PUT api/<ArtistController>/5

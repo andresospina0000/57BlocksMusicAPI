@@ -17,19 +17,19 @@ namespace _57BlocksMusicAPI.Controllers
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> logger;
-        private readonly IUserAplicationService userService;
+        private readonly IUserAplicationService service;
 
         public UserController(ILogger<UserController> logger, IUserAplicationService userService)
         {
             this.logger = logger;
-            this.userService = userService;
+            this.service = userService;
         }
 
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> Get()
         {
-            var allUsers = await userService.GetAll();
+            var allUsers = await service.GetAll();
 
             return Ok(allUsers);
         }
@@ -37,7 +37,7 @@ namespace _57BlocksMusicAPI.Controllers
         [HttpGet("email/{email}")]
         public async Task<IActionResult> GetByEmail(string email)
         {
-            var user = await userService.GetByEmail(email);
+            var user = await service.GetByEmail(email);
 
             return Ok(user);
         }
@@ -51,7 +51,7 @@ namespace _57BlocksMusicAPI.Controllers
             }
 
             var userEntity = user.Adapt<User>();
-            var createdUser = await userService.Create(userEntity);
+            var createdUser = await service.Create(userEntity);
 
             return Ok(createdUser);
         }
@@ -60,16 +60,17 @@ namespace _57BlocksMusicAPI.Controllers
         public async Task<IActionResult> Update(UserViewModel user)
         {
             var userEntity = user.Adapt<User>();
-            var updatedUser = await userService.Update(userEntity);
+            var updatedUser = await service.Update(userEntity);
+            var result = updatedUser.Adapt<UserViewModel>();
 
-            return Ok(updatedUser);
+            return Ok(result);
         }
 
         //[Authorize]
         [HttpDelete("{email}")]
         public async Task<IActionResult> Delete(string email)
         {
-            var deletedUser = await userService.Delete(email);
+            var deletedUser = await service.Delete(email);
 
             return NoContent();
         }

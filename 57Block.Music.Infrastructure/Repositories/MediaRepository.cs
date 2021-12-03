@@ -9,9 +9,17 @@ namespace _57Block.Music.Infrastructure.Repositories
 {
     public abstract class MediaRepository<T>: IMediaRepository<T> where T : MediaEntity 
     {
-        public Task<T> CreateEntity(T entity)
+
+        private readonly IMediaRepository<T> repository;
+
+        public MediaRepository(IMediaRepository<T> _repository)
         {
-            throw new NotImplementedException();
+            this.repository = _repository;
+        }
+
+        public virtual async Task<T> CreateEntity(T entity)
+        {
+            return await Task.FromResult(entity);
         }
 
         public Task<bool> DeleteEntity(string entityId)

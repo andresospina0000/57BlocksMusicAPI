@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace _57Block.Music.Infrastructure.Repositories
 {
-    public class ArtistRepository : IMediaRepository<Artist>
+    public class ArtistRepository : IArtistRepository
     {
         private readonly MusicDbLiteContext dbLiteContext;
 

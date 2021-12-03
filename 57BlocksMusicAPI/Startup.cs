@@ -3,6 +3,7 @@ using _57Block.Music.Infrastructure.Repositories;
 using _57Block.Music.Infrastructure.Repositories.Contracts;
 using _57Block.Music.Infrastructure.SqlLiteConnection;
 using _57Blocks.Music.BLogic;
+using _57Blocks.Music.BLogic.AplicationServices;
 using _57Blocks.Music.BLogic.Contracts;
 using _57Blocks.Music.DataModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -38,9 +39,11 @@ namespace _57BlocksMusicAPI
         {
             //Configuring aplication services
             services.AddTransient<IUserAplicationService, UserAplicationService>();
-                       
+            services.AddTransient<IArtistAplicationService, ArtistAplicationService>();
+
             //Adding Repositories
             services.AddTransient<IUserRepository<User>, UserRepository>();
+            services.AddTransient<IArtistRepository, ArtistRepository>();
 
             //Adding Db Context
             var connectionString = ApplicationSettings.AppSettings.GetConnectionString;
