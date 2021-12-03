@@ -14,5 +14,7 @@ namespace _57Blocks.Music.DataModels.Models
         public int UserId { get; set; }
 
         public TimeSpan TrackDuration { get; set; }
+
+        public Song() { }
     }
 }

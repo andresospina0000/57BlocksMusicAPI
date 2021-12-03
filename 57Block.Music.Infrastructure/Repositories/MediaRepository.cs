@@ -1,5 +1,5 @@
 ﻿using _57Block.Music.Infrastructure.Repositories.Contracts;
-using _57Blocks.Music.DataModels.Models;
+using _57Blocks.Music.DataModels.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace _57Block.Music.Infrastructure.Repositories
 {
-    public class AlbumRepository : IMediaRepository<Album>
+    public abstract class MediaRepository<T>: IMediaRepository<T> where T : MediaEntity 
     {
-        public Task<Album> CreateEntity(Album entity)
+        public Task<T> CreateEntity(T entity)
         {
             throw new NotImplementedException();
         }
@@ -19,37 +19,37 @@ namespace _57Block.Music.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Album>> GetAll()
+        public Task<IEnumerable<T>> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Task<Album> GetById(string id)
+        public Task<T> GetAllByUserEmail(string email)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Album> GetByName(string name)
+        public Task<T> GetAllPublic()
         {
             throw new NotImplementedException();
         }
 
-        public Task<Album> GetAllByUserEmail(string email)
+        public Task<T> GetById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Album> GetEntityById(string entityId)
+        public Task<T> GetByName(string name)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Album> UpdateEntity(Album entity)
+        public Task<T> GetEntityById(string entityId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Album> GetAllPublic()
+        public Task<T> UpdateEntity(T entity)
         {
             throw new NotImplementedException();
         }

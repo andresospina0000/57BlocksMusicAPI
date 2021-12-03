@@ -9,6 +9,8 @@ namespace _57Blocks.Music.DataModels.Models
     {
         public string Title { get; set; }
 
-        public IEnumerable<Song> Tracks { get; set; } 
+        public IEnumerable<Song> Tracks { get; set; }
+
+        public Album() { }
     }
 }

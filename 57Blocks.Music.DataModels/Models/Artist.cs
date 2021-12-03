@@ -10,5 +10,7 @@ namespace _57Blocks.Music.DataModels.Models
         public string Abstract { get; set; }
 
         public IEnumerable<Album> Albums { get; set; }
+
+        public Artist() { }
     }
 }

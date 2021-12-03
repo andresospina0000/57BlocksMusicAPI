@@ -13,7 +13,6 @@ namespace _57Block.Music.Infrastructure.Repositories
     public class UserRepository : IUserRepository<User>
     {
         private readonly MusicDbLiteContext dbLiteContext;
-        private const string USER_TABLE = "users";
 
         public UserRepository(MusicDbLiteContext _dbLiteContext)
         {
@@ -38,10 +37,6 @@ namespace _57Block.Music.Infrastructure.Repositories
 
         public Task<User> UpdateUser(User user)
         {
-            /*var currentUser = dbLiteContext.users.Where(
-                x => x.Email.ToLower().Equals(user.Email.ToLower())
-                ).FirstOrDefault();*/
-
             var currentUser = dbLiteContext.users.Where(
                 x => x.userId.Equals(user.userId)).FirstOrDefault();
 

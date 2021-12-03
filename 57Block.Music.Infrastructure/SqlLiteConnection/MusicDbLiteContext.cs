@@ -1,4 +1,5 @@
 ﻿using _57Blocks.Music.DataModels;
+using _57Blocks.Music.DataModels.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using System;
@@ -11,6 +12,9 @@ namespace _57Block.Music.Infrastructure.SqlLiteConnection
     {
         private ModelBuilder modelBuilder;
         public DbSet<User> users { get; set; }
+        public DbSet<Artist> artists { get; set; }
+        public DbSet<Album> albums { get; set; }
+        public DbSet<Song> songs { get; set; }
 
         public MusicDbLiteContext(DbContextOptions<MusicDbLiteContext> options) : base(options)
         {
@@ -26,6 +30,14 @@ namespace _57Block.Music.Infrastructure.SqlLiteConnection
                 user.Property(x => x.userId)
                 .ValueGeneratedOnAdd();
             });
+
+            modelBuilder.Entity<Artist>(user =>
+            {
+                user.HasKey(x => x.Id);
+                user.Property(x => x.Id)
+                .ValueGeneratedOnAdd();
+            });
+
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -12,7 +12,7 @@ namespace _57Block.Music.Infrastructure.Repositories.Contracts
 
         Task<T> UpdateEntity(T entity);
 
-        Task<T> DeleteEntity(string entityId);
+        Task<bool> DeleteEntity(string entityId);
 
         Task<T> GetEntityById(string entityId);
     }

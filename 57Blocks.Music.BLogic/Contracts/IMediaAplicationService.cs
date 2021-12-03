@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _57Blocks.Music.BLogic.Contracts
 {
-    interface IMediaAplicationService<T> where T : MediaEntity
+    public interface IMediaAplicationService<T> where T : MediaEntity
     {
         /// <summary>
         /// Gets all the media entities
@@ -41,5 +41,19 @@ namespace _57Blocks.Music.BLogic.Contracts
         /// <param name="mediaEntity"></param>
         /// <returns></returns>
         Task<T> Update(T mediaEntity);
+
+        /// <summary>
+        /// Gets a media entity by its name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        Task<T> GetByName(string name);
+
+        /// <summary>
+        /// Get the media entity by the user email
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        Task<T> GetByUserEmail(string email);
     }
 }

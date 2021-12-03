@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _57Blocks.Music.BLogic.Contracts
 {
-    interface IArtistAplicationService : IMediaAplicationService<Artist>
+    public interface IArtistAplicationService : IMediaAplicationService<Artist>
     {        
     }
 }
