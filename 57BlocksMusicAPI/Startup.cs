@@ -6,6 +6,7 @@ using _57Blocks.Music.BLogic;
 using _57Blocks.Music.BLogic.AplicationServices;
 using _57Blocks.Music.BLogic.Contracts;
 using _57Blocks.Music.DataModels;
+using _57Blocks.Music.DataModels.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -48,6 +49,9 @@ namespace _57BlocksMusicAPI
             //Adding Db Context
             var connectionString = ApplicationSettings.AppSettings.GetConnectionString;
             services.AddDbContext<MusicDbLiteContext>(
+                options => options.UseSqlite(connectionString));
+                        
+            services.AddDbContext<MusicDbLiteContext<Artist>>(
                 options => options.UseSqlite(connectionString));
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();

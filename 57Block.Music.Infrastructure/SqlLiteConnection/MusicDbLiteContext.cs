@@ -1,4 +1,5 @@
 ﻿using _57Blocks.Music.DataModels;
+using _57Blocks.Music.DataModels.Contracts;
 using _57Blocks.Music.DataModels.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
@@ -13,8 +14,6 @@ namespace _57Block.Music.Infrastructure.SqlLiteConnection
         private ModelBuilder modelBuilder;
         public DbSet<User> users { get; set; }
         public DbSet<Artist> artists { get; set; }
-        public DbSet<Album> albums { get; set; }
-        public DbSet<Song> songs { get; set; }
 
         public MusicDbLiteContext(DbContextOptions<MusicDbLiteContext> options) : base(options)
         {
@@ -31,10 +30,35 @@ namespace _57Block.Music.Infrastructure.SqlLiteConnection
                 .ValueGeneratedOnAdd();
             });
 
-            modelBuilder.Entity<Artist>(user =>
+            modelBuilder.Entity<Artist>(artist =>
             {
-                user.HasKey(x => x.Id);
-                user.Property(x => x.Id)
+                artist.HasKey(x => x.Id);
+                artist.Property(x => x.Id)
+                .ValueGeneratedOnAdd();
+            });
+
+            base.OnModelCreating(modelBuilder);
+        }
+    }
+
+    public class MusicDbLiteContext<T> : DbContext where T : MediaEntity
+    {
+        private ModelBuilder modelBuilder;
+
+        public DbSet<T> DataSet { get; set; }
+
+        public MusicDbLiteContext(DbContextOptions<MusicDbLiteContext<T>> options) : base(options)
+        {
+            this.Database.EnsureCreated();
+        }
+
+        protected override void OnModelCreating(ModelBuilder _modelBuilder)
+        {
+            this.modelBuilder = _modelBuilder;
+            modelBuilder.Entity<T>(mediaEntity =>
+            {
+                mediaEntity.HasKey(x => x.Id);
+                mediaEntity.Property(x => x.Id)
                 .ValueGeneratedOnAdd();
             });
 

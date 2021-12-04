@@ -13,7 +13,9 @@ namespace _57Blocks.Music.DataModels.Models
         [JsonProperty(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
         public string Abstract { get; set; }
 
-        [JsonProperty(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
+        
+        [JsonProperty(NamingStrategyType = typeof(SnakeCaseNamingStrategy)
+            , DefaultValueHandling = DefaultValueHandling.Ignore)]
         public IEnumerable<AlbumViewModel> Albums { get; set; }
     }
 }

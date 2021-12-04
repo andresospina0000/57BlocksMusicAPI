@@ -18,11 +18,14 @@ namespace _57BlocksMusicAPI.Controllers
     {
         private readonly ILogger<ArtistController> logger;
         private readonly IArtistAplicationService service;
+        private readonly IUserAplicationService userService;
 
-        public ArtistController(ILogger<ArtistController> _logger, IArtistAplicationService _artistAplicationService)
+        public ArtistController(ILogger<ArtistController> _logger, IArtistAplicationService _artistAplicationService
+            , IUserAplicationService _userService)
         {
             this.logger = _logger;
             this.service = _artistAplicationService;
+            this.userService = _userService;
         }
 
         // GET: api/<ArtistController>

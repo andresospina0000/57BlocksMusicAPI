@@ -1,4 +1,5 @@
 ﻿using _57Block.Music.Infrastructure.Repositories.Contracts;
+using _57Block.Music.Infrastructure.SqlLiteConnection;
 using _57Blocks.Music.DataModels.Contracts;
 using System;
 using System.Collections.Generic;
@@ -9,16 +10,18 @@ namespace _57Block.Music.Infrastructure.Repositories
 {
     public abstract class MediaRepository<T>: IMediaRepository<T> where T : MediaEntity 
     {
+        private readonly MusicDbLiteContext<T> context;
 
-        private readonly IMediaRepository<T> repository;
-
-        public MediaRepository(IMediaRepository<T> _repository)
+        public MediaRepository(MusicDbLiteContext<T> _context)
         {
-            this.repository = _repository;
+            this.context = _context;
         }
 
         public virtual async Task<T> CreateEntity(T entity)
         {
+            await context.DataSet.AddAsync(entity);
+            await context.SaveChangesAsync();
+
             return await Task.FromResult(entity);
         }
 

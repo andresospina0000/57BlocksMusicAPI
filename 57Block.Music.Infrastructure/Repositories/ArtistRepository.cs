@@ -9,69 +9,13 @@ using System.Threading.Tasks;
 
 namespace _57Block.Music.Infrastructure.Repositories
 {
-    public class ArtistRepository : IArtistRepository
+    public class ArtistRepository : MediaRepository<Artist>, IArtistRepository
     {
-        private readonly MusicDbLiteContext dbLiteContext;
+        private static readonly MusicDbLiteContext<Artist> context;
 
-        public ArtistRepository(MusicDbLiteContext _dbLiteContext)
+        public ArtistRepository(MusicDbLiteContext<Artist> _context) : base(context)
         {
-            this.dbLiteContext = _dbLiteContext;
-        }
-
-        public async Task<Artist> CreateEntity(Artist entity)
-        {
-            await dbLiteContext.artists.AddAsync(entity);
-            _ = dbLiteContext.SaveChangesAsync();
-
-            return await Task.FromResult(entity);
-        }
-
-        public async Task<bool> DeleteEntity(string entityId)
-        {
-            bool isDeleted = false;
-
-            var artist = dbLiteContext.artists.Where(
-                x => x.Id.Equals(entityId)).FirstOrDefault();
-
-            dbLiteContext.artists.Remove(artist);
-            await dbLiteContext.SaveChangesAsync();
-
-            return await Task.FromResult(!isDeleted);
-        }
-
-        public Task<IEnumerable<Artist>> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Artist> GetById(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Artist> GetByName(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Artist> GetAllByUserEmail(string email)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Artist> GetEntityById(string entityId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Artist> UpdateEntity(Artist entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Artist> GetAllPublic()
-        {
-            throw new NotImplementedException();
+            
         }
     }
 }

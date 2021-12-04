@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace _57Blocks.Music.BLogic.AplicationServices
 {
-    public class SongAplicationService : MediaRepository<Song>
+    public class SongAplicationService
     {
     }
 }

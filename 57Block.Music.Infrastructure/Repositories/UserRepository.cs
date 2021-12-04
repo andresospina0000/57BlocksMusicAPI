@@ -65,6 +65,6 @@ namespace _57Block.Music.Infrastructure.Repositories
         public async Task<User> GetUserById(string entityId)
         {
             throw new NotImplementedException();
-        }
+        }        
     }
 }

@@ -14,16 +14,13 @@ namespace _57BlocksMusicAPI.Controllers
     [ApiController]
     public class SongController : ControllerBase
     {
-        private readonly ILogger<SongController> _logger;
-        private readonly SongAplicationService songService;
+        private readonly ILogger<SongController> _logger;        
 
         // GET: api/<SongsController>
         [HttpGet]
-        public async Task<IActionResult> GetSongsByAlbum(string albumId)
+        public string GetSongsByAlbum(string albumId)
         {
-            var songs = songService.GetAlbumSongs(albumId);
-
-            return Ok(songs);
+            return "value";
         }
 
         // GET api/<SongsController>/5
