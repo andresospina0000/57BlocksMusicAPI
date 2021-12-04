@@ -11,10 +11,16 @@ namespace _57Block.Music.Infrastructure.Repositories
     public abstract class MediaRepository<T>: IMediaRepository<T> where T : MediaEntity 
     {
         private readonly MusicDbLiteContext<T> context;
+        private readonly MusicDbLiteContext contextLite;
 
         public MediaRepository(MusicDbLiteContext<T> _context)
         {
             this.context = _context;
+        }
+
+        public MediaRepository(MusicDbLiteContext _contextLite)
+        {
+            this.contextLite = _contextLite;
         }
 
         public virtual async Task<T> CreateEntity(T entity)

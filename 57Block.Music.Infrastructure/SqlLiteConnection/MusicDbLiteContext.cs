@@ -30,13 +30,6 @@ namespace _57Block.Music.Infrastructure.SqlLiteConnection
                 .ValueGeneratedOnAdd();
             });
 
-            modelBuilder.Entity<Artist>(artist =>
-            {
-                artist.HasKey(x => x.Id);
-                artist.Property(x => x.Id)
-                .ValueGeneratedOnAdd();
-            });
-
             base.OnModelCreating(modelBuilder);
         }
     }

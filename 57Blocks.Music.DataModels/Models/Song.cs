@@ -10,9 +10,7 @@ namespace _57Blocks.Music.DataModels.Models
         public int ArtistId { get; }
 
         public int AlbumId { get; }
-
-        public int UserId { get; set; }
-
+                
         public TimeSpan TrackDuration { get; set; }
 
         public Song() { }

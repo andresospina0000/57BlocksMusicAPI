@@ -44,7 +44,7 @@ namespace _57BlocksMusicAPI.Controllers
 
         // POST api/<ArtistController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] ArtistViewModel artist)
+        public async Task<IActionResult> Create([FromBody] ArtistViewModel artist)
         {
             var artistEntity = artist.Adapt<Artist>();
             var createdArtist = await service.Create(artistEntity);

@@ -16,21 +16,18 @@ namespace _57Blocks.Music.BLogic.AplicationServices
     {
         private readonly IMediaRepository<T> repository;
         private readonly IUserAplicationService userService;
-        private readonly MusicDbLiteContext<T> context;
 
-        public MediaAplicationService(IMediaRepository<T> _repository, IUserAplicationService _userService,
-            MusicDbLiteContext<T> _context)
+        public MediaAplicationService(IMediaRepository<T> _repository, IUserAplicationService _userService)
         {
             this.repository = _repository;
             this.userService = _userService;
-            this.context = _context;
         }
 
-        public async Task<T> Create(T mediaEntity)
+        public virtual async Task<T> Create(T mediaEntity)
         {
             var user = userService.GetByEmail(mediaEntity.Email).Result;
 
-            if(user is null)
+            if (user is null)
             {
                 throw new MusicApiException(HttpStatusCode.NotFound);
             }
