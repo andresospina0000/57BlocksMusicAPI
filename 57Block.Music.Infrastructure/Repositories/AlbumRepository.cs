@@ -1,4 +1,5 @@
 ﻿using _57Block.Music.Infrastructure.Repositories.Contracts;
+using _57Block.Music.Infrastructure.SqlLiteConnection;
 using _57Blocks.Music.DataModels.Models;
 using System;
 using System.Collections.Generic;
@@ -7,51 +8,13 @@ using System.Threading.Tasks;
 
 namespace _57Block.Music.Infrastructure.Repositories
 {
-    public class AlbumRepository : IMediaRepository<Album>
+    public class AlbumRepository : MediaRepository<Album>, IAlbumRepository
     {
-        public Task<Album> CreateEntity(Album entity)
-        {
-            throw new NotImplementedException();
-        }
+        private readonly MusicDbLiteContext<Album> context;
 
-        public Task<bool> DeleteEntity(string entityId)
+        public AlbumRepository(MusicDbLiteContext<Album> _context) : base(_context)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Album>> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Album> GetById(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Album> GetByName(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Album> GetAllByUserEmail(string email)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Album> GetEntityById(string entityId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Album> UpdateEntity(Album entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Album> GetAllPublic()
-        {
-            throw new NotImplementedException();
+            this.context = _context;
         }
     }
 }

@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using _57Blocks.Music.BLogic.Contracts;
+using _57Blocks.Music.DataModels.Models;
+using Mapster;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +16,18 @@ namespace _57BlocksMusicAPI.Controllers
     [ApiController]
     public class AlbumController : ControllerBase
     {
+        private readonly ILogger<AlbumController> logger;
+        private readonly IAlbumAplicationService service;
+        private readonly IUserAplicationService userService;
+
+        public AlbumController(ILogger<AlbumController> _logger, IAlbumAplicationService _service
+            , IUserAplicationService _userService)
+        {
+            this.logger = _logger;
+            this.service = _service;
+            this.userService = _userService;
+        }
+
         // GET: api/<AlbumController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -26,10 +42,29 @@ namespace _57BlocksMusicAPI.Controllers
             return "value";
         }
 
+        [HttpGet("private/{email}")]
+        public async Task<IActionResult> GetAllPrivate(string email)
+        {
+            var privateArtists = await service.GetAllPrivate(email);
+            return Ok(privateArtists);
+        }
+
+        [HttpGet("public/{email}")]
+        public async Task<IActionResult> GetAllPublic(string email)
+        {
+            var privateArtists = await service.GetAllPublic(email);
+            return Ok(privateArtists);
+        }
+
         // POST api/<AlbumController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Create([FromBody] AlbumViewModel album)
         {
+            var albumEntity = album.Adapt<Album>();
+            var createdAlbum = await service.Create(albumEntity);
+            var result = createdAlbum.Adapt<AlbumViewModel>();
+
+            return Ok(result);
         }
 
         // PUT api/<AlbumController>/5

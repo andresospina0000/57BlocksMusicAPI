@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _57Blocks.Music.BLogic.Contracts
 {
-    interface IAlbumAplicationService : IMediaAplicationService<Album>
+    public interface IAlbumAplicationService : IMediaAplicationService<Album>
     {
         Task<IEnumerable<Album>> GetAlbumsByArtist(Artist artist);
     }

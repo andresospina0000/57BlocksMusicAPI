@@ -55,5 +55,19 @@ namespace _57Blocks.Music.BLogic.Contracts
         /// <param name="user"></param>
         /// <returns></returns>
         Task<T> GetByUserEmail(string email);
+
+        /// <summary>
+        /// Get all the private media entity by the user email
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        Task<IEnumerable<T>> GetAllPrivate(string email);
+
+        /// <summary>
+        /// Get all the public media entity by the user email
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        Task<IEnumerable<T>> GetAllPublic(string email);
     }
 }

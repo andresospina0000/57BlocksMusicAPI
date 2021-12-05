@@ -18,5 +18,8 @@ namespace _57Blocks.Music.DataModels.Contracts
 
         [JsonProperty(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
         public string Email { get; set; }
+
+        [JsonProperty(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
+        public bool Visible { get; set; }
     }
 }

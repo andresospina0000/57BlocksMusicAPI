@@ -48,6 +48,34 @@ namespace _57Blocks.Music.BLogic.AplicationServices
             throw new NotImplementedException();
         }
 
+        public async Task<IEnumerable<T>> GetAllPrivate(string email)
+        {
+            var user = userService.GetByEmail(email).Result;
+
+            if (user is null)
+            {
+                throw new MusicApiException(HttpStatusCode.NotFound);
+            }
+
+            var privateEntities = await repository.GetAllPrivate(user.userId);
+
+            return privateEntities;
+        }
+
+        public async Task<IEnumerable<T>> GetAllPublic(string email)
+        {
+            var user = userService.GetByEmail(email).Result;
+
+            if (user is null)
+            {
+                throw new MusicApiException(HttpStatusCode.NotFound);
+            }
+
+            var privateEntities = await repository.GetAllPublic(user.userId);
+
+            return privateEntities;
+        }
+
         public Task<T> GetById(string id)
         {
             throw new NotImplementedException();

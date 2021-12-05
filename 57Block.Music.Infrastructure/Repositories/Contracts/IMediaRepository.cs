@@ -16,6 +16,8 @@ namespace _57Block.Music.Infrastructure.Repositories.Contracts
 
         Task<T> GetAllByUserEmail(string email);
 
-        Task<T> GetAllPublic();
+        Task<IEnumerable<T>> GetAllPublic(int userId);
+
+        Task<IEnumerable<T>> GetAllPrivate(int userId);
     }
 }

@@ -3,24 +3,19 @@ using _57Block.Music.Infrastructure.SqlLiteConnection;
 using _57Blocks.Music.DataModels.Contracts;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace _57Block.Music.Infrastructure.Repositories
 {
-    public abstract class MediaRepository<T>: IMediaRepository<T> where T : MediaEntity 
+    public abstract class MediaRepository<T> : IMediaRepository<T> where T : MediaEntity
     {
         private readonly MusicDbLiteContext<T> context;
-        private readonly MusicDbLiteContext contextLite;
 
         public MediaRepository(MusicDbLiteContext<T> _context)
         {
             this.context = _context;
-        }
-
-        public MediaRepository(MusicDbLiteContext _contextLite)
-        {
-            this.contextLite = _contextLite;
         }
 
         public virtual async Task<T> CreateEntity(T entity)
@@ -46,9 +41,22 @@ namespace _57Block.Music.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<T> GetAllPublic()
+        public async Task<IEnumerable<T>> GetAllPrivate(int userId)
         {
-            throw new NotImplementedException();
+            var privateEntities = context.DataSet.Where(
+                    x => x.UserId.Equals(userId) && x.Visible.Equals(false)
+                ).ToList();
+
+            return await Task.FromResult(privateEntities);
+        }
+
+        public async Task<IEnumerable<T>> GetAllPublic(int userId)
+        {
+            var privateEntities = context.DataSet.Where(
+                    x => x.UserId.Equals(userId) && x.Visible.Equals(true)
+                ).ToList();
+
+            return await Task.FromResult(privateEntities);
         }
 
         public Task<T> GetById(string id)

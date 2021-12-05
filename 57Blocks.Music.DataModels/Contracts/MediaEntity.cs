@@ -18,6 +18,7 @@ namespace _57Blocks.Music.DataModels.Contracts
 
         public int UserId { get; set; }
 
+        [NotMapped]
         public string Email { get; set; }
     }
 }

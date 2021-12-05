@@ -20,19 +20,27 @@ namespace _57BlocksMusicAPI.Controllers
         private readonly IArtistAplicationService service;
         private readonly IUserAplicationService userService;
 
-        public ArtistController(ILogger<ArtistController> _logger, IArtistAplicationService _artistAplicationService
+        public ArtistController(ILogger<ArtistController> _logger, IArtistAplicationService _service
             , IUserAplicationService _userService)
         {
             this.logger = _logger;
-            this.service = _artistAplicationService;
+            this.service = _service;
             this.userService = _userService;
         }
 
         // GET: api/<ArtistController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet("private/{email}")]
+        public async Task<IActionResult> GetAllPrivate(string email)
         {
-            return new string[] { "value1", "value2" };
+            var privateArtists = await service.GetAllPrivate(email);
+            return Ok(privateArtists);
+        }
+
+        [HttpGet("public/{email}")]
+        public async Task<IActionResult> GetAllPublic(string email)
+        {
+            var privateArtists = await service.GetAllPublic(email);
+            return Ok(privateArtists);
         }
 
         // GET api/<ArtistController>/5

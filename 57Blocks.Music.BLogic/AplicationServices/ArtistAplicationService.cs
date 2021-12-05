@@ -24,21 +24,5 @@ namespace _57Blocks.Music.BLogic.AplicationServices
             this.repository = _repository;
             this.userService = _userService;
         }
-
-        public override async Task<Artist> Create(Artist artist)
-        {
-            var user = userService.GetByEmail(artist.Email).Result;
-
-            if (user is null)
-            {
-                throw new MusicApiException(HttpStatusCode.NotFound);
-            }
-
-            artist.UserId = user.userId;
-
-            await repository.CreateEntity(artist);
-            return await Task.FromResult(artist);
-        }
-
     }
 }
