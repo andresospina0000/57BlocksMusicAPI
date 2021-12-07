@@ -5,6 +5,9 @@ using System.Text;
 
 namespace _57Block.Music.Infrastructure.AppSettings
 {
+    /// <summary>
+    /// This class access to the appsettings file in order to get the values from this configuration file
+    /// </summary>
     public class ApplicationSettings
     {
         private static IConfiguration AppConfig => GetAppSettingsConfig();
@@ -43,6 +46,9 @@ namespace _57Block.Music.Infrastructure.AppSettings
             }
         }
 
+        /// <summary>
+        /// Gets the connection string needed to connect to the SqLite database
+        /// </summary>
         public string GetConnectionString
             => AppConfig["ConnectionStrings:DefaultConnection"];
 

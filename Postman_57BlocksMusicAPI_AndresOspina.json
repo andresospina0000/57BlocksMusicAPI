@@ -1,0 +1,360 @@
+{
+	"info": {
+		"_postman_id": "46744794-69c6-4731-9a87-322165e0c786",
+		"name": "Basic API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"felipe@email.com\",\r\n    \"name\" : \"felipe ospina\",\r\n    \"password\" : \"1234d678912\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44329/api/user",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"email\" : \"felipe@email.com\",\r\n    \"name\" : \"felipe ospina upd\",\r\n    \"password\" : \"1234d678912\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44329/api/user",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44329/api/user/felipe@email.com",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"api",
+								"user",
+								"felipe@email.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By Email",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44329/api/user/email/angelic@aemail",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"api",
+								"user",
+								"email",
+								"angelic@aemail"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Artists",
+			"item": [
+				{
+					"name": "Create Artist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Frank Zappa\",\r\n    \"Abstract\" : \"A famous artist here!\",\r\n    \"email\" : \"felipe@email.com\",\r\n    \"visible\" : false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44329/api/artist",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"api",
+								"artist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Artist",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"email\" : \"felipe@email.com\",\r\n    \"name\" : \"felipe ospina upd\",\r\n    \"password\" : \"1234d678912\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44329/api/user",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Artist",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44329/api/user/felipe@email.com",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"api",
+								"user",
+								"felipe@email.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Artist",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44329/api/user/email/angelic@aemail",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"api",
+								"user",
+								"email",
+								"angelic@aemail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Private Artist",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44329/api/artist/private/felipe@email.com",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"api",
+								"artist",
+								"private",
+								"felipe@email.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Public Artist",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44329/api/artist/public/felipe@email.com",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"api",
+								"artist",
+								"public",
+								"felipe@email.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Artist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"felipe@email.com\",\r\n    \"name\" : \"felipe ospina\",\r\n    \"password\" : \"1234d678912\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44329/api/artist",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44329",
+							"path": [
+								"api",
+								"artist"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

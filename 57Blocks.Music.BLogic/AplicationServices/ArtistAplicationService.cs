@@ -13,11 +13,19 @@ using System.Threading.Tasks;
 
 namespace _57Blocks.Music.BLogic.AplicationServices
 {
+    /// <summary>
+    /// The aplication service class for the artist entities. inherits from the abstract class MediaAplicationService<T> where <T>, in this case, is an Artist entity
+    /// </summary>
     public class ArtistAplicationService : MediaAplicationService<Artist>, IArtistAplicationService
     {
         private readonly IArtistRepository repository;
         private readonly IUserAplicationService userService;
 
+        /// <summary>
+        /// The constructor with all the dependencies injection needed
+        /// </summary>
+        /// <param name="_repository"></param>
+        /// <param name="_userService"></param>
         public ArtistAplicationService(IArtistRepository _repository,
             IUserAplicationService _userService) : base(_repository, _userService)
         {

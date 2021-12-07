@@ -9,6 +9,9 @@ using System.Text;
 
 namespace _57Block.Music.Infrastructure.SqlLiteConnection
 {
+    /// <summary>
+    /// This class implements and configurates the database context to enable the connection to the SqLite database
+    /// </summary>
     public class MusicDbLiteContext : DbContext
     {
         private ModelBuilder modelBuilder;
@@ -34,6 +37,11 @@ namespace _57Block.Music.Infrastructure.SqlLiteConnection
         }
     }
 
+    /// <summary>
+    /// This class implements and configurates the database context to enable the connection to the SqLite database.
+    /// This class implements a high level of abstraction which allows the execution of CRUD operations for any MediaEntity (Album, Artist or Song)
+    /// </summary>
+    /// <typeparam name="T">Refers to the type of an Media Entity like an artist, album or song</typeparam>
     public class MusicDbLiteContext<T> : DbContext where T : MediaEntity
     {
         private ModelBuilder modelBuilder;

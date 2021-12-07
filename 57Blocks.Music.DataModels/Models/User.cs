@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace _57Blocks.Music.DataModels
 {
+    /// <summary>
+    /// The user data model. Refers to the "users" table in the database
+    /// </summary>
     [Table("users")]
     public class User
     {

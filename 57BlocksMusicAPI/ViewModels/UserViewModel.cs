@@ -6,6 +6,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace _57BlocksMusicAPI
 {
+    /// <summary>
+    /// The ViewModel desing pattern to separete the business data from the response payload
+    /// </summary>
     [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
     public class UserViewModel
     {

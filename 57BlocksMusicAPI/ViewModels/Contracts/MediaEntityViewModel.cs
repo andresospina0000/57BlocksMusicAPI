@@ -6,6 +6,9 @@ using System.Text;
 
 namespace _57Blocks.Music.DataModels.Contracts
 {
+    /// <summary>
+    /// This abstract class defines the base structure of an Artist, Album or Song view model
+    /// </summary>
     [JsonObject (NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
     public abstract class MediaEntityViewModel
     {        

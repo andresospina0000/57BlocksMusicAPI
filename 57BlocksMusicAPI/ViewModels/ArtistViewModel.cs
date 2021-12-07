@@ -7,6 +7,9 @@ using System.Text;
 
 namespace _57Blocks.Music.DataModels.Models
 {
+    /// <summary>
+    /// The ViewModel desing pattern to separete the business data from the response payload
+    /// </summary>
     [JsonObject(NamingStrategyType = typeof(CamelCaseNamingStrategy))]
     public class ArtistViewModel : MediaEntityViewModel
     {

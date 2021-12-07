@@ -6,6 +6,9 @@ using System.Text;
 
 namespace _57Blocks.Music.DataModels.Models
 {
+    /// <summary>
+    /// The song data model. Refers to the "songs" table in the database
+    /// </summary>
     [Table("songs")]
     public class Song : MediaEntity
     {

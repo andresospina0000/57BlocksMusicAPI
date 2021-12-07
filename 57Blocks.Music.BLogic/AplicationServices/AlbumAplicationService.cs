@@ -9,11 +9,19 @@ using System.Threading.Tasks;
 
 namespace _57Blocks.Music.BLogic.AplicationServices
 {
+    /// <summary>
+    /// The aplication service class for the albums entities. inherits from the abstract class MediaAplicationService<T> where <T>, in this case, is an Album entity
+    /// </summary>
     public class AlbumAplicationService : MediaAplicationService<Album>, IAlbumAplicationService
     {
         private readonly IAlbumRepository repository;
         private readonly IUserAplicationService userService;
 
+        /// <summary>
+        /// The constructor with all the dependencies injection needed
+        /// </summary>
+        /// <param name="_repository"></param>
+        /// <param name="_userService"></param>
         public AlbumAplicationService(IAlbumRepository _repository,
             IUserAplicationService _userService) : base(_repository, _userService)
         {

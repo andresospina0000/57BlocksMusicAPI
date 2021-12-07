@@ -12,6 +12,13 @@ using System.Threading.Tasks;
 
 namespace _57Blocks.Music.BLogic.AplicationServices
 {
+    /// <summary>
+    /// This class implement the Aplication Service desing pattern which allows to implement all the business logic for an specific model/controller/view
+    /// and allows the interaction of other business logic services.
+    /// This class is the main class which implements a high level of abstraction using the generic type <T>  of type MediaEntity, 
+    /// allowing any kind of this entity to implement the basic business logic operations
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class MediaAplicationService<T> : IMediaAplicationService<T> where T : MediaEntity
     {
         private readonly IMediaRepository<T> repository;

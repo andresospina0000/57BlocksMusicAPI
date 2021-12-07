@@ -9,6 +9,12 @@ using System.Threading.Tasks;
 
 namespace _57Block.Music.Infrastructure.Repositories
 {
+    /// <summary>
+    /// This class implements the reposiroty design pattern, which decouple the business logic  from the data access layer.
+    /// It use the context<T> where the generic type <T> refers to the kind of entity/table 
+    /// that is going to be affected, i.e., an artist, an album or a song.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class MediaRepository<T> : IMediaRepository<T> where T : MediaEntity
     {
         private readonly MusicDbLiteContext<T> context;

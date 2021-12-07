@@ -8,8 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace _57BlocksMusicAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -18,14 +16,17 @@ namespace _57BlocksMusicAPI.Controllers
     {
         private readonly ILogger<AlbumController> logger;
         private readonly IAlbumAplicationService service;
-        private readonly IUserAplicationService userService;
 
-        public AlbumController(ILogger<AlbumController> _logger, IAlbumAplicationService _service
-            , IUserAplicationService _userService)
+        /// <summary>
+        /// Implements a constructor with the dependency injection needed for the controller
+        /// </summary>
+        /// <param name="_logger"></param>
+        /// <param name="_service"></param>
+        /// <param name="_userService"></param>
+        public AlbumController(ILogger<AlbumController> _logger, IAlbumAplicationService _service)
         {
             this.logger = _logger;
             this.service = _service;
-            this.userService = _userService;
         }
 
         // GET: api/<AlbumController>
@@ -42,6 +43,11 @@ namespace _57BlocksMusicAPI.Controllers
             return "value";
         }
 
+        /// <summary>
+        /// Get all the albums created by the user (email) that only this user can see
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         [HttpGet("private/{email}")]
         public async Task<IActionResult> GetAllPrivate(string email)
         {
@@ -49,6 +55,11 @@ namespace _57BlocksMusicAPI.Controllers
             return Ok(privateArtists);
         }
 
+        /// <summary>
+        /// Get all the albums that any user can fetch
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         [HttpGet("public/{email}")]
         public async Task<IActionResult> GetAllPublic(string email)
         {
@@ -56,7 +67,11 @@ namespace _57BlocksMusicAPI.Controllers
             return Ok(privateArtists);
         }
 
-        // POST api/<AlbumController>
+        /// <summary>
+        /// Creates an album. The album will be linked to the user email (if the user is already registered)
+        /// </summary>
+        /// <param name="album">The json object with all the properties of an album</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] AlbumViewModel album)
         {
